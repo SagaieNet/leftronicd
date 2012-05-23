@@ -52,20 +52,18 @@ class DatabaseRetriever:
             s = select(columns)
             if 'limit' in self.stream.configs:
                 limit = self.stream.configs['limit']
-                s.limit(limit)
+                s = s.limit(limit)
                 if 'window' in self.stream.configs and 'last' == self.stream.configs['window']:
                     countStmt = select([func.count(columns[0])])
                     count = conn.execute(countStmt).scalar()
-                    s.offset(count-limit)
- #                   print("Count is %d" % (count))
+                    s = s.offset(count-limit)
             if 'asc' in self.stream.configs:
-                s.order_by(table.c[self.stream.configs['asc']].asc())
+                s = s.order_by(table.c[self.stream.configs['asc']].asc())
             elif 'desc' in self.stream.configs:
-                s.order_by(table.c[self.stream.configs['desc']].desc())
+                s = s.order_by(table.c[self.stream.configs['desc']].desc())
             resultset = conn.execute(s)
             for row in resultset:
                 result.append(list(row))
-#        print("Result: %s" % (result))
         return result
     
     def getSqliteUrl(self):
