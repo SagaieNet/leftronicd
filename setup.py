@@ -37,12 +37,12 @@ CLASSIFIERS = [
 ]
 
 setup(
-    name='leftronicd',
-    version=__version__,
+    name='leftronicd_db',
+    version=0.1,
     description='A twisted based daemon to send metrics to leftronic.com',
-    author='Jonas Obrist',
-    author_email='ojiidotch@gmail.com',
-    url='https://github.com/ojii/leftronicd',
+    author='Jonas Obrist, Henry Barnor',
+    author_email='ojiidotch@gmail.com, henry@leftronic.com',
+    url='https://github.com/sonofabell/leftronicd',
     packages=find_packages(),
     license='BSD',
     platforms=['OS Independent'],
