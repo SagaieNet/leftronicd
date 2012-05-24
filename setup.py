@@ -14,9 +14,10 @@ INSTALL_REQUIRES = [
     'requests==0.11.1',
     'wsgiref==0.1.2',
     'zope.interface==3.8.0',
-    'MySQL-python==1.2.3',
+#    'MySQL-python==1.2.3',
     'SQLAlchemy==0.7.7',
-    'pyodbc==3.0.3',
+#    'pyodbc==3.0.3',
+    # remove database-specific driver packages; those should be installed separately with pip
 ]
 
 try:
@@ -38,7 +39,7 @@ CLASSIFIERS = [
 
 setup(
     name='leftronicd_db',
-    version=0.1,
+    version='0.1.1',
     description='A twisted based daemon to send metrics to leftronic.com',
     author='Jonas Obrist, Henry Barnor',
     author_email='ojiidotch@gmail.com, henry@leftronic.com',
