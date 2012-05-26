@@ -39,7 +39,7 @@ CLASSIFIERS = [
 
 setup(
     name='leftronicd_db',
-    version='0.1.1',
+    version='0.1.2',
     description='A twisted based daemon to send metrics to leftronic.com',
     author='Jonas Obrist, Henry Barnor',
     author_email='ojiidotch@gmail.com, henry@leftronic.com',
