@@ -7,16 +7,14 @@ streams:
       interval: <number in seconds between updates>
       engine: mssql
       dsn: <dsn>
-      host: <database host> # do not specify if dsn is specified (comment out line)
-      username: <database username> # optional if dsn is specified
-      password: <database password> # optional if dsn is specified
-      port: <database connection port> # do not specify if dsn is specified
       database: <database name>
       table: <database table to read>
       limit: <number of rows>
-      asc: <column name> # will take precedence if both asc and desc specified
-      #trusted: true # true if we should use Windows Authentication with MS-SQL. not necessary if set in dsn.
+      # optional fields:
+      # desc: <column name> # sort descending by this column
+      asc: <column name> # sort ascending, will take precedence if both asc and desc specified
       window: <first or last> # get the first n or last n rows, where n is the limit
+      # note: MS-SQL requires asc or desc to be specified if you choose the "last" window
       columns:
         - <column 1>
         - <column 2>
