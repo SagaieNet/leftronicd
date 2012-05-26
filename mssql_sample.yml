@@ -6,15 +6,17 @@ streams:
       type: <widget_type> # should be table
       interval: <number in seconds between updates>
       engine: mssql
-      dsn: <dsn 
-      host: <database host> # do not specify if dsn is specified
-      username: <database username>
-      password: <database password>
+      dsn: <dsn>
+      host: <database host> # do not specify if dsn is specified (comment out line)
+      username: <database username> # optional if dsn is specified
+      password: <database password> # optional if dsn is specified
       port: <database connection port> # do not specify if dsn is specified
-      database: <database name> # do not specify if dsn is specified
+      database: <database name>
       table: <database table to read>
       limit: <number of rows>
       asc: <column name> # will take precedence if both asc and desc specified
+      #trusted: true # true if we should use Windows Authentication with MS-SQL. not necessary if set in dsn.
+      window: <first or last> # get the first n or last n rows, where n is the limit
       columns:
         - <column 1>
         - <column 2>

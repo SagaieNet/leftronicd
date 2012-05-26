@@ -10,7 +10,7 @@ class DatabaseRetriever:
         'mysql'         : 'mysql://%s:%s@%s/%s',
         'postgresql'    : 'postgresql://',
         'oracle'        : 'oracle://',
-        'mssql'         : 'mssql+pyodbc://%s:%s@%s/%s',
+        'mssql'         : 'mssql+pyodbc://%s:%s@%s/%s%s',
         'sqlite'        : 'sqlite:///%s',
     }
     def __init__(self, stream):
@@ -18,6 +18,7 @@ class DatabaseRetriever:
         self.url = self.getDBUrl()
         self.engine = None
         if self.url:
+            print 'self.url', self.url
             self.engine = create_engine(self.url, echo=True)
 
     def getConnectionObject(self):
@@ -63,7 +64,8 @@ class DatabaseRetriever:
                 s = s.order_by(table.c[self.stream.configs['desc']].desc())
             resultset = conn.execute(s)
             for row in resultset:
-                result.append(list(row))
+                result.append([str(i) for i in row])
+                # result.append(list(row))
         return result
     
     def getSqliteUrl(self):
@@ -96,5 +98,9 @@ class DatabaseRetriever:
             host = self.stream.configs['host']
             if 'port' in self.stream.configs:
                 host += ':' + str(self.stream.configs['port'])
-            url = self.DB_TYPE_TO_PREFIX_MAP[self.stream.configs['engine']] % (self.stream.configs['username'], self.stream.configs['password'], host, self.stream.configs['database'])
+            url = (self.DB_TYPE_TO_PREFIX_MAP[self.stream.configs['engine']] % 
+                (self.stream.configs['username'], self.stream.configs['password'], 
+                    host, self.stream.configs['database'],
+                    ('?Trusted=True' if 'trusted' in self.stream.configs and self.stream.configs['trusted'] else '')
+                ))
         return url
