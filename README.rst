@@ -28,4 +28,4 @@ Running
 Example
 =======
 
-See mssql_sample.yaml file for a sample configuration file used to connect to a MS-SQL database (SQL Server)
+See mssql_sample.yml file for a sample configuration file used to connect to a MS-SQL database (SQL Server)
